@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  mongo:
+    container_name: mongo-on-docker2
+    image: mongo
+    ports:
+      - "27888:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${user}
+      MONGO_INITDB_ROOT_PASSWORD: ${password}
+    volumes:
+      - mongodb_data_container:/data/db
+    env_file:
+        - .env
+volumes:
+  mongodb_data_container:

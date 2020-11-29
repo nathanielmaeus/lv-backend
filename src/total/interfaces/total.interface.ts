@@ -1,7 +1,8 @@
 import { Document } from 'mongoose';
 
-export interface History extends Document {
+export interface Total extends Document {
   USD: number;
   EUR: number;
   RUB: number;
+  date: string;
 }

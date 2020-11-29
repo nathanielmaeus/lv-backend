@@ -1,15 +1,16 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { HistoryController } from './history/history.controller';
-import { HistoryModule } from './history/history.module';
+import { TotalController } from './total/total.controller';
+import { TotalModule } from './total/total.module';
 import { LoggerMiddleware } from './logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { URL } from './CONSTS';
+import { AccountModule } from './accounts/account.module';
 
 @Module({
-  imports: [MongooseModule.forRoot(URL), HistoryModule],
+  imports: [MongooseModule.forRoot(URL), TotalModule, AccountModule],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes(HistoryController);
+    consumer.apply(LoggerMiddleware).forRoutes(TotalController);
   }
 }
