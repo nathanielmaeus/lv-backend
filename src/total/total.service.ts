@@ -13,8 +13,21 @@ export class TotalService {
   }
 
   async save(createTotalDto: CreateTotalDto): Promise<CreateTotalDto[]> {
-    const createdTotalItem = new this.totalModel(createTotalDto);
-    await createdTotalItem.save();
+    const prevHistory = await this.get();
+    const dates = prevHistory.map((item) => item.date);
+
+    if (!dates.includes(createTotalDto.date)) {
+      const createdTotalItem = new this.totalModel(createTotalDto);
+      await createdTotalItem.save();
+    } else {
+      await this.totalModel.findOneAndUpdate(
+        { date: createTotalDto.date },
+        {
+          $set: createTotalDto,
+        },
+      );
+    }
+
     return this.get();
   }
 }

@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Put,
 } from '@nestjs/common';
 import { TotalService } from './total.service';
 import { CreateTotalDto } from './dto/CreateTotalDto';
@@ -13,13 +14,13 @@ import { CreateTotalDto } from './dto/CreateTotalDto';
 export class TotalController {
   constructor(private readonly totalService: TotalService) {}
 
-  @Get('get')
+  @Get()
   @HttpCode(HttpStatus.OK)
   async get(): Promise<CreateTotalDto[]> {
     return await this.totalService.get();
   }
 
-  @Post('save')
+  @Put()
   async save(
     @Body() createTotalDto: CreateTotalDto,
   ): Promise<CreateTotalDto[]> {

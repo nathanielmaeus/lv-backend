@@ -7,7 +7,11 @@ import { URL } from './CONSTS';
 import { AccountModule } from './accounts/account.module';
 
 @Module({
-  imports: [MongooseModule.forRoot(URL), TotalModule, AccountModule],
+  imports: [
+    MongooseModule.forRoot(URL, { useFindAndModify: false }),
+    TotalModule,
+    AccountModule,
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
