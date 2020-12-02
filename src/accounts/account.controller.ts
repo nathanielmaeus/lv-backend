@@ -39,6 +39,6 @@ export class AccountController {
   @Delete()
   @HttpCode(HttpStatus.OK)
   async remove(@Query() query): Promise<CreateAccountDto[]> {
-    return await this.accountService.remove(query.id);
+    return await this.accountService.remove(query.timestamp);
   }
 }

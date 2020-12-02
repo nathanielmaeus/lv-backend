@@ -4,7 +4,6 @@ import {
   Get,
   HttpCode,
   HttpStatus,
-  Post,
   Put,
 } from '@nestjs/common';
 import { TotalService } from './total.service';
