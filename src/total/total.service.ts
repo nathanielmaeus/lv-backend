@@ -20,6 +20,10 @@ export class TotalService {
       const createdTotalItem = new this.totalModel(createTotalDto);
       await createdTotalItem.save();
     } else {
+      if (prevHistory[prevHistory.length - 1].RUB === createTotalDto.RUB) {
+        return prevHistory;
+      }
+
       await this.totalModel.findOneAndUpdate(
         { date: createTotalDto.date },
         {
